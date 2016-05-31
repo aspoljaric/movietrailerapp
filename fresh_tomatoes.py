@@ -56,6 +56,41 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        .storyline {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 14px;
+            color: rgba(0,0,0,.8);
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-top: 25px;
+        }
+        .col-lg-4 {
+            width: 50% !important;
+        }
+        .navbar-inverse {
+            background-image: linear-gradient(to bottom,#0E7C6A 0,#222 100%) !important;
+        }
+        .navbar-brand {
+            display: block;
+            text-decoration: none;
+            font-size: 31px;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-style: normal;
+            padding: 0px;
+            height: 72px;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #9A3 !important;
+        }
+
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -107,7 +142,7 @@ main_page_content = '''
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <a class="navbar-brand" href="#"><img src="tomato.png"> Fresh Tomatoes Movie Trailers</a>
           </div>
         </div>
       </div>
@@ -124,7 +159,8 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+    <div class="title">{movie_title}</div>
+    <div class="storyline">{movie_storyline}</div>
 </div>
 '''
 
@@ -145,7 +181,8 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            movie_storyline=movie.storyline
         )
     return content
 
